@@ -21,7 +21,7 @@ var storage = multer.diskStorage({
 })
 
 var upload = multer({ storage: storage })
-
+/*
 MongoClient.connect(myurl, (err, client) => {
   if (err) return console.log(err)
   db = client.db('test') 
@@ -29,6 +29,12 @@ MongoClient.connect(myurl, (err, client) => {
     console.log('listening on 3000')
   })
 })
+*/
+
+app.listen(3000, () => {
+  console.log('listening on 3000')
+})
+
 
 app.get('/',function(req,res){
   res.sendFile(__dirname + '/index.html');
@@ -63,7 +69,7 @@ app.post('/uploadmultiple', upload.array('myFiles', 12), (req, res, next) => {
  
 })
 
-
+/*
 app.post('/uploadphoto', upload.single('picture'), (req, res) => {
 	var img = fs.readFileSync(req.file.path);
  var encode_image = img.toString('base64');
@@ -114,4 +120,4 @@ db.collection('mycollection').findOne({'_id': ObjectId(filename) }, (err, result
   })
 })
 
-
+*/
