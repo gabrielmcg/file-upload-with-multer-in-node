@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 const MongoClient = require('mongodb').MongoClient
 ObjectId = require('mongodb').ObjectId
 
-const myurl = 'mongodb://localhost:27017';
+const myurl = 'mongodb://mongodb:27017';
 
 
 var storage = multer.diskStorage({
