@@ -35,8 +35,22 @@ app.listen(3000, () => {
   console.log('listening on 3000')
 })
 
+app.get('/mongoconnect',function(req,res){
+MongoClient.connect(myurl, (err, client) => {
+  if (err) return console.log(err)
+  db = client.db('test')
 
-app.get('/',function(req,res){
+  console.log('connected to database')
+  res.redirect('/uploadui')
+
+
+})
+
+
+});
+
+
+app.get('/uploadui',function(req,res){
   res.sendFile(__dirname + '/index.html');
 
 });
@@ -69,7 +83,6 @@ app.post('/uploadmultiple', upload.array('myFiles', 12), (req, res, next) => {
  
 })
 
-/*
 app.post('/uploadphoto', upload.single('picture'), (req, res) => {
 	var img = fs.readFileSync(req.file.path);
  var encode_image = img.toString('base64');
@@ -79,13 +92,13 @@ app.post('/uploadphoto', upload.single('picture'), (req, res) => {
       contentType: req.file.mimetype,
       image:  new Buffer(encode_image, 'base64')
    };
-db.collection('mycollection').insertOne(finalImg, (err, result) => {
+ db.collection('mycollection').insertOne(finalImg, (err, result) => {
   	console.log(result)
 
     if (err) return console.log(err)
 
     console.log('saved to database')
-    res.redirect('/')
+    res.redirect('/uploadui')
   
     
   })
@@ -120,4 +133,3 @@ db.collection('mycollection').findOne({'_id': ObjectId(filename) }, (err, result
   })
 })
 
-*/
